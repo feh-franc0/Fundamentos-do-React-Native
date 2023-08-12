@@ -39,7 +39,6 @@ export function Home() {
         </TouchableOpacity>
       </View>
 
-      {/* Renderiza apenas os elementos mostrados em tela, usado quando há listas grandes */}
       <FlatList 
         data={participants}
         keyExtractor={item => item}
@@ -57,19 +56,6 @@ export function Home() {
           </Text>
         )}
       />
-
-      {/* Usado para listas de Menu (listas pequenas que precisam sempre estar renderizados) */}
-      {/* <ScrollView showsVerticalScrollIndicator={false}>
-      {
-        participants.map(participant => (
-          <Participant 
-            key={participant}
-            name={participant}
-            onRemove={() => handleParticipantRemove("Fernando")}
-          />
-        ))
-      }
-      </ScrollView> */}
     </View>
   )
 }
