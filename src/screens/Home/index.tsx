@@ -2,14 +2,19 @@ import { Text, TextInput, View, TouchableOpacity, ScrollView, FlatList, Alert } 
 import { styles } from "./styles";
 
 import { Participant } from "../../Components/Participant";
+import { useState } from "react";
 
 export function Home() {
-  const participants = ['Rodrigo', 'Vini', 'Diego', 'Biro', 'Duda', 'Tati', 'Franco', 'Lara', 'Caio', 'Gigi']
+  const [participants, setParticipants] = useState<string[]>([]);
+  const [participantName, setParticipantName] = useState('');
   
   function handleParticipantAdd() {
-    if(participants.includes("Rodrigo")) {
+    if(participants.includes(participantName)) {
       return Alert.alert("Participante já existe", "não pode conter nomes iguais na lista")
     }
+
+    setParticipants(prevState => [...prevState, participantName])
+    setParticipantName('')
   }
 
   function handleParticipantRemove(name: string) {
@@ -43,6 +48,8 @@ export function Home() {
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
           keyboardType="default"
+          onChangeText={text => setParticipantName(text)}
+          value={participantName}
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
